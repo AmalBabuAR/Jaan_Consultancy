@@ -1,0 +1,9 @@
+[
+{"_id":{"$oid":"63f9bc07c672731cc3aff36f"},"phoneNumber":{"$numberDouble":"917736710616.0"},"email":"aramalbabu@gmail.com","password":"123456","role":{"$numberInt":"2"},"category":"construction","GST":"asdfghjkl1234567","builderName":"Amal","address":{"addressLine1":"andanldn","addressLine2":"acacac","addressLine3":"ewvvwe","pincord":"691012"},"experience":{"$numberInt":"10"},"createdAt":{"$date":{"$numberLong":"1677310983031"}},"updatedAt":{"$date":{"$numberLong":"1677310983031"}},"__v":{"$numberInt":"0"}}
+
+,
+
+{"_id":{"$oid":"63fa433bb97521afbd5e3319"},"phoneNumber":{"$numberDouble":"916282343711.0"},"email":"amal@gmail.com","password":"$2b$12$nQHndg.7RvCf7/NBFinc5epsXXFhr62HGmWzRcTqCuICCimp7/onK","role":{"$numberInt":"2"},"category":"construction","GST":"12AAACI1681G1Z0","builderName":"Amal Babu","address":{"addressLine1":"home","addressLine2":"honed","addressLine3":"ACA12","pincord":"123456"},"experience":{"$numberInt":"10"},"createdAt":{"$date":{"$numberLong":"1677345595114"}},"updatedAt":{"$date":{"$numberLong":"1677345595114"}},"__v":{"$numberInt":"0"}}
+
+]
+
