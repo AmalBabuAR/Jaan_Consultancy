@@ -63,7 +63,7 @@ const builderCtrl = {
   },
   register: async (req, res) => {
     try {
-      console.log(req.body);
+      console.log(req.body, 'new body coming');
       const {
         phoneNumber,
         email,
@@ -109,7 +109,8 @@ const builderCtrl = {
 
       const accessToken = createAccessToken({ id: builder._id });
       
-      res.json({ accessToken ,loginBuilderId:builder._id ,check: builder.adminCheck ,msg: "Login Success!"})
+      res.json({ accessToken ,loginBuilderId:builder._id ,check: builder.adminCheck})
+      // res.json({ accessToken ,loginBuilderId:builder._id ,check: builder.adminCheck ,msg: "Login Success!"})
   } catch (err) {
       console.log(err.message);
       return res.status(500).json({msg: err.message})

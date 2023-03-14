@@ -44,9 +44,9 @@ const userCtrl = {
             const url = `${CLIENT_URL}/user/activate/${activation_token}`
             
             sendMail(email, url, "Verify your email address")
-            console.log(activation_token);
+            console.log(activation_token, 'activation token');
 
-            res.json({msg: 'Register test Please activate your email to start'})
+            res.json({msg: 'Verification Link has send to your email'})
         } catch(err) {
             return res.status(500).json({msg: err.message})
         }
@@ -81,15 +81,16 @@ const userCtrl = {
 
             const isMatch = await bycrypt.compare(password, user.password)
             if(!isMatch) return res.status(400).json({msg: "Password is incorrect!"})
-            console.log(user);
+            console.log(user ,'details');
             const refresh_token = createRefreshToken({id: user._id})
+
             res.cookie('refreshtoken', refresh_token, {
                 httpOnly: true,
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7 days
             })
 
-            res.json({msg: "Login Success!"})
+            res.json({msg: "Login Success!", user})
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
@@ -118,10 +119,11 @@ const userCtrl = {
             if(!user) return res.status(400).json({msg: "This email does not exists."})
 
             const access_token = createAccessToken({id: user._id})
+            console.log(access_token,'token email');
             const url = `${CLIENT_URL}/user/reset/${access_token}`
 
             sendMail(email, url, "Reset your password")
-            res.json({msg: "Re-send the password, please check your email."})
+            res.json({msg: "Password Reset Link has been send to your email.",token:access_token})
         } catch (err) {
             console.log(err);
         }
@@ -171,29 +173,6 @@ const userCtrl = {
           console.log(error);
         }
       },
-
-
-
-
-
-    getUserInfor: async (req, res) => {
-        try {
-            const user = await Users.findById(req.user.id).select('-password')
-
-            res.json(user)
-        } catch (err) {
-            return res.status(500).json({msg: err.message}) 
-        }
-    },
-    getUsersAllInfor: async (req, res) => {
-        try {
-            const users = await Users.find().select('-password')
-
-            res.json(users)
-        } catch (err) {
-            return res.status(500).json({msg: err.message}) 
-        }
-    },
     logout: async (req, res) => {
         try {
             console.log('res');
@@ -203,40 +182,64 @@ const userCtrl = {
             return res.status(500).json({msg: err.message}) 
         }
     }, 
-    //USE PROMISE
-    updateUser: async (req, res) => {
-        try {
-            const {name, avatar} = req.body
-            await Users.findOneAndUpdate({_id: req.user.id}, {
-                name, avatar
-            })
 
-            res.json({msg: "Update Success!"})
-        } catch (err) {
-            return res.status(500).json({msg: err.message}) 
-        }
-    },
-    updateUsersRole: async (req, res) => {
-        try {
-            const {role} = req.body
-            await Users.findOneAndUpdate({_id: req.params.id}, {
-                role
-            })
 
-            res.json({msg: "Update Success!"})
-        } catch (err) {
-            return res.status(500).json({msg: err.message}) 
-        }
-    },
-    deleteUser: async (req, res) => {
-        try {
-            await Users.findByIdAndDelete(req.params.id)
 
-            res.json({msg: "Deleted Success!"})
-        } catch (err) {
-            return res.status(500).json({msg: err.message}) 
-        }
-    }
+
+
+    // getUserInfor: async (req, res) => {
+    //     try {
+    //         const user = await Users.findById(req.user.id).select('-password')
+
+    //         res.json(user)
+    //     } catch (err) {
+    //         return res.status(500).json({msg: err.message}) 
+    //     }
+    // },
+    // getUsersAllInfor: async (req, res) => {
+    //     try {
+    //         const users = await Users.find().select('-password')
+
+    //         res.json(users)
+    //     } catch (err) {
+    //         return res.status(500).json({msg: err.message}) 
+    //     }
+    // },
+    
+    // //USE PROMISE
+    // updateUser: async (req, res) => {
+    //     try {
+    //         const {name, avatar} = req.body
+    //         await Users.findOneAndUpdate({_id: req.user.id}, {
+    //             name, avatar
+    //         })
+
+    //         res.json({msg: "Update Success!"})
+    //     } catch (err) {
+    //         return res.status(500).json({msg: err.message}) 
+    //     }
+    // },
+    // updateUsersRole: async (req, res) => {
+    //     try {
+    //         const {role} = req.body
+    //         await Users.findOneAndUpdate({_id: req.params.id}, {
+    //             role
+    //         })
+
+    //         res.json({msg: "Update Success!"})
+    //     } catch (err) {
+    //         return res.status(500).json({msg: err.message}) 
+    //     }
+    // },
+    // deleteUser: async (req, res) => {
+    //     try {
+    //         await Users.findByIdAndDelete(req.params.id)
+
+    //         res.json({msg: "Deleted Success!"})
+    //     } catch (err) {
+    //         return res.status(500).json({msg: err.message}) 
+    //     }
+    // }
  
 }
 

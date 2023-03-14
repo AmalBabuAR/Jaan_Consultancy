@@ -18,8 +18,8 @@ const adminSchema = new mongoose.Schema({
         trim: true
     },
     role: {
-        type: String,
-        default: 'Admin' // 0 = user, 1= admin
+        type: Number,
+        default: 2 // 0 = user,1= builder, 2= admin 
     },
 },{
     timestamps: true

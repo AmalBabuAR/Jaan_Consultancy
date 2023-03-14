@@ -70,7 +70,7 @@ const builderSchema = new mongoose.Schema({
     },
     role: {
         type: Number,
-        default: 2
+        default: 1
     },
     adminCheck: {
         type: Boolean,

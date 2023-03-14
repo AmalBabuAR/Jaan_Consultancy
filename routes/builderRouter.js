@@ -13,7 +13,7 @@ router.post('/register', builderCtrl.register)
 
 router.post('/login', builderCtrl.login)
 
-router.post('/', builderCtrl.login)
+// router.post('/', builderCtrl.login)
 router.get('/registerInfo/:id', builderCtrl.registerInfo)
 router.use(builderAuth)
 router.get('/projectView', builderCtrl.getProjectImage)

@@ -26,19 +26,16 @@ router.get('/projectView/:id', userCtrl.getProjectImage)
 
 
 
+// router.get('/infor', auth, userCtrl.getUserInfor)
+
+// router.get('/all_infor', auth, authAdmin, userCtrl.getUsersAllInfor)
 
 
+// router.patch('/update', auth, userCtrl.updateUser)
 
-router.get('/infor', auth, userCtrl.getUserInfor)
+// router.patch('/update_role/:id', auth, authAdmin, userCtrl.updateUsersRole)
 
-router.get('/all_infor', auth, authAdmin, userCtrl.getUsersAllInfor)
-
-
-router.patch('/update', auth, userCtrl.updateUser)
-
-router.patch('/update_role/:id', auth, authAdmin, userCtrl.updateUsersRole)
-
-router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser)
+// router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser)
 
 
 module.exports = router
